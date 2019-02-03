@@ -34,6 +34,7 @@ class Disk:
             self.y += 50 #moves disk down a little for the animation
         else:
             self.set = True
+        pygame.draw.circle(self.win, self.colour, (self.x,self.y), 30)
 
     def compare_colour(self, other) -> bool:
         """
@@ -102,6 +103,7 @@ if __name__ == '__main__':
                 if row < 6:
                     curr_disk = Disk(win, disk_pos_x, row, col, colour)
                     board[col][row] = curr_disk
+                    print(board)
 
         #background is a light blue
         win.fill((0,255,255))
@@ -123,13 +125,12 @@ if __name__ == '__main__':
             for disk in col:
                 if disk != None:
                     disk.draw()
-
-        #changes the colour of the next disk 
-        if(colour == red):
-            colour = blue
-        else:
-            colour = red
-        curr_disk = None
+        if(curr_disk != None and curr_disk.get_set()):
+            if(colour == red):
+                colour = blue
+            else:
+                colour = red
+            curr_disk = None
         pygame.display.update()
     pygame.quit()
 
