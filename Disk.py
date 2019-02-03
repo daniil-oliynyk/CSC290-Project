@@ -62,11 +62,11 @@ class Disk:
 
 
     def check_win(self) -> bool:
-        print("vertical amt: " + str(self.check_bottom()))
-        print("horizontal amt :" + str(self.check_left() + self.check_right() - 1))
-        print("upper diagonal amt :" + str(self.check_topright() + self.check_bottomleft() - 1))
-        print("lower diagonal amt :" + str(self.check_topleft() + self.check_bottomright() - 1))
-        if self.check_bottom() >= 4:
+        #print("vertical amt: " + str(self.check_bottom()))
+        #print("horizontal amt :" + str(self.check_left() + self.check_right() - 1))
+        #print("upper diagonal amt :" + str(self.check_topright() + self.check_bottomleft() - 1))
+        #print("lower diagonal amt :" + str(self.check_topleft() + self.check_bottomright() - 1))
+        #if self.check_bottom() >= 4:
             return True
         if (self.check_left() + self.check_right() - 1) >= 4:
             return True
