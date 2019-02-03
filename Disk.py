@@ -16,7 +16,6 @@ class Disk:
         self.colour = colour
 
         #disk pointers
-        self.top = None #probably don't need this
         self.bottom = None
         self.left = None
         self.right = None
@@ -25,43 +24,120 @@ class Disk:
         self.bottomleft = None
         self.bottomright = None
 
+
+    def check_bottom(self) -> int:
+        if self.bottom == None or self.compare_colour(self.bottom):
+            return 1
+        return 1 + self.bottom.check_bottom()
+
+    def check_left(self) -> int:
+        if self.left == None or self.compare_colour(self.left):
+            return 1
+        return 1 + self.left.check_left()
+
+    def check_right(self) -> int:
+        if self.right == None or self.compare_colour(self.right):
+            return 1
+        return 1 + self.right.check_right()
+
+    def check_topleft(self) -> int:
+        if self.topleft == None or self.compare_colour(self.topleft):
+            return 1
+        return 1 + self.topleft.check_topleft()
+
+    def check_topright(self) -> int:
+        if self.topright == None or self.compare_colour(self.topright):
+            return 1
+        return 1 + self.topright.check_topright()
+
+    def check_bottomleft(self) -> int:
+        if self.bottomleft == None or self.compare_colour(self.bottomleft):
+            return 1
+        return 1 + self.bottomleft.check_bottomleft()
+
+    def check_bottomright(self) -> int:
+        if self.bottomright == None or self.compare_colour(self.bottomright):
+            return 1
+        return 1 + self.bottomright.check_bottomright()
+
+
+    def check_win(self) -> bool:
+        print("vertical amt: " + str(self.check_bottom()))
+        print("horizontal amt :" + str(self.check_left() + self.check_right() - 1))
+        print("upper diagonal amt :" + str(self.check_topright() + self.check_bottomleft() - 1))
+        print("lower diagonal amt :" + str(self.check_topleft() + self.check_bottomright() - 1))
+        if self.check_bottom() >= 4:
+            return True
+        if (self.check_left() + self.check_right() - 1) >= 4:
+            return True
+        if (self.check_topright() + self.check_bottomleft() - 1) >= 4:
+            return True
+        if (self.check_topleft() + self.check_bottomright() - 1) >= 4:
+            return True
+        return False     
+
     def get_set(self):
         return self.set
 
     def draw(self):
         #checks to see if the disk has fallen into its place
-        if(self.y < (700 - (self.col + 1)*100)):
+        if(self.y < (700 - (self.row + 1)*100)):
             self.y += 50 #moves disk down a little for the animation
         else:
             self.set = True
         pygame.draw.circle(self.win, self.colour, (self.x,self.y), 30)
 
     def compare_colour(self, other) -> bool:
-        """
-        """
-        return self.colour == other.colour
+        #returns true if they are not the same colour
+        return self.colour != other.colour
 
     def get_colour(self):
         return self.colour
 
     def setup(self, board: list) -> None:
-        if self.row != 0:
-            self.bottom = board[self.col][self.row - 1]
-            if self.col != 0:
-                self.bottomleft = board[self.col - 1][self.row - 1]
-            if self.col != 6:
-                self.bottomright = board[self.col + 1][self.row - 1]
-
-        if self.col != 0:
-            self.left = board[self.col - 1][self.row]
-            if self.row != 5:
-                self.topleft = board[self.col - 1][self.row + 1]
-
-        if self.col != 6:
+        if (self.row == 0 and self.col == 0):
             self.right = board[self.col + 1][self.row]
-            if self.row != 5:
-                self.topright = board[self.col + 1][self.row + 1]
-
+            self.topright = board[self.col + 1][self.row + 1]
+        elif (self.row == 0 and self.col == 6):
+            self.left = board[self.col - 1][self.row]
+            self.topleft = board[self.col - 1][self.row + 1]
+        elif (self.row == 5 and self.col == 0):
+            self.bottom = board[self.col][self.row - 1]
+            self.bottomright = board[self.col + 1][self.row - 1]
+            self.right = board[self.col + 1][self.row]
+        elif (self.row == 5 and self.col == 6):
+            self.bottom = board[self.col][self.row - 1]
+            self.bottomleft = board[self.col - 1][self.row - 1]
+            self.left = board[self.col - 1][self.row]
+        elif (self.row == 0):
+            self.left = board[self.col - 1][self.row]
+            self.right = board[self.col + 1][self.row]
+            self.topleft = board[self.col - 1][self.row + 1]
+            self.topright = board[self.col + 1][self.row + 1]
+        elif (self.row == 5):
+            self.bottom = board[self.col][self.row - 1]
+            self.left = board[self.col - 1][self.row]
+            self.right = board[self.col + 1][self.row]
+            self.bottomleft = board[self.col - 1][self.row - 1]
+            self.bottomright = board[self.col + 1][self.row - 1]
+        elif (self.col == 0):
+            self.bottom = board[self.col][self.row - 1]
+            self.bottomright = board[self.col + 1][self.row - 1]
+            self.right = board[self.col + 1][self.row]
+            self.topright = board[self.col + 1][self.row + 1]
+        elif (self.col == 6):
+            self.bottom = board[self.col][self.row - 1]
+            self.bottomleft = board[self.col - 1][self.row - 1]
+            self.left = board[self.col - 1][self.row]
+            self.topleft = board[self.col - 1][self.row + 1]
+        else:
+            self.bottom = board[self.col][self.row - 1]
+            self.left = board[self.col - 1][self.row]
+            self.right = board[self.col + 1][self.row]
+            self.bottomleft = board[self.col - 1][self.row - 1]
+            self.bottomright = board[self.col + 1][self.row - 1]
+            self.topleft = board[self.col - 1][self.row + 1]
+            self.topright = board[self.col + 1][self.row + 1]
 
     
 def find_row(column: list) -> int:
@@ -103,7 +179,10 @@ if __name__ == '__main__':
                 if row < 6:
                     curr_disk = Disk(win, disk_pos_x, row, col, colour)
                     board[col][row] = curr_disk
-                    print(board)
+                    curr_disk.setup(board)
+                    if (curr_disk.check_win()):
+                        print("Win!!!")
+                        break
 
         #background is a light blue
         win.fill((0,255,255))
@@ -125,6 +204,8 @@ if __name__ == '__main__':
             for disk in col:
                 if disk != None:
                     disk.draw()
+
+        
         if(curr_disk != None and curr_disk.get_set()):
             if(colour == red):
                 colour = blue
@@ -132,6 +213,6 @@ if __name__ == '__main__':
                 colour = red
             curr_disk = None
         pygame.display.update()
-    pygame.quit()
+pygame.quit()
 
 
