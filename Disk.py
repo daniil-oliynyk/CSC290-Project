@@ -74,13 +74,13 @@ class Disk:
         #print("horizontal amt :" + str(self.check_left() + self.check_right() - 1))
         #print("upper diagonal amt :" + str(self.check_topright() + self.check_bottomleft() - 1))
         #print("lower diagonal amt :" + str(self.check_topleft() + self.check_bottomright() - 1))
-        if self.check_bottom() >= 4:
+        if self.check_bottom() >= 4: #checks the vertical
             return True
-        if (self.check_left() + self.check_right() - 1) >= 4:
+        if (self.check_left() + self.check_right() - 1) >= 4: #checks horizontally
             return True
-        if (self.check_topright() + self.check_bottomleft() - 1) >= 4:
+        if (self.check_topright() + self.check_bottomleft() - 1) >= 4: #checks upper diagonal
             return True
-        if (self.check_topleft() + self.check_bottomright() - 1) >= 4:
+        if (self.check_topleft() + self.check_bottomright() - 1) >= 4: #checks lower diagonal
             return True
         return False     
 
@@ -102,12 +102,12 @@ class Disk:
     def get_colour(self):
         return self.colour
 
-def attach_disk(self, col, row, board: list):
+    def attach_disk(self, col, row, board: list):
         """
         check if given index exists on the board, if it does
         return that value. if it doesnt return None.
         """
-        if row == -1 or col == -1 or row == 6 or col == 7:
+        if row == -1 or col == -1 or row == 6 or col == 7: #checking the boarders of the board
             return None
         else:
             return board[col][row]
@@ -117,37 +117,46 @@ def attach_disk(self, col, row, board: list):
         Get the disk to point to the disks surrounding it on the board.
         Also gets the surrounding disks to point to the current/new disk.
         """
-        self.bottom = self.attach_disk(self.col, self.row - 1, board)
-        self.left = self.attach_disk(self.col - 1, self.row, board)
+        self.bottom = self.attach_disk(self.col, self.row - 1, board) #Disk points to whatever is below
+        
+        self.left = self.attach_disk(self.col - 1, self.row, board) #Disk points to whatever is to the left
         if self.left!= None:
-            board[self.col - 1][self.row].right = self
-        self.right = self.attach_disk(self.col + 1, self.row, board)
+            board[self.col - 1][self.row].right = self #Disk at left points at current Disk
+            
+        self.right = self.attach_disk(self.col + 1, self.row, board) #Disk points to whatever is to the right
         if self.right != None:
-            board[self.col + 1][self.row].left = self
-        self.topleft = self.attach_disk(self.col - 1, self.row + 1, board)
+            board[self.col + 1][self.row].left = self #Disk at right points at current Disk
+            
+        self.topleft = self.attach_disk(self.col - 1, self.row + 1, board) #Disk points to whatever is to the topleft
         if self.topleft != None:
-            board[self.col - 1][self.row + 1].bottomright = self
-        self.topright = self.attach_disk(self.col + 1, self.row + 1, board)
+            board[self.col - 1][self.row + 1].bottomright = self #Disk at topleft points at current Disk
+            
+        self.topright = self.attach_disk(self.col + 1, self.row + 1, board) #Disk points to whatever is to the topright
         if self.topright != None:
-            board[self.col + 1][self.row].bottomleft = self
-        self.bottomleft = self.attach_disk(self.col - 1, self.row - 1, board)
+            board[self.col + 1][self.row].bottomleft = self #Disk at topright points at current Disk
+            
+        self.bottomleft = self.attach_disk(self.col - 1, self.row - 1, board) #Disk points to whatever is to the bottomleft
         if self.bottomleft != None:
-            board[self.col - 1][self.row - 1].topright = self
-        self.bottomright = self.attach_disk(self.col + 1, self.row - 1, board)
+            board[self.col - 1][self.row - 1].topright = self #Disk at bottomleft points at current Disk
+            
+        self.bottomright = self.attach_disk(self.col + 1, self.row - 1, board) #Disk points to whatever is to the bottomright
         if self.bottomright != None:
-            board[self.col + 1][self.row - 1].topleft = self
+            board[self.col + 1][self.row - 1].topleft = self #Disk at bottomright points at current Disk
 
     
 def find_row(column: list) -> int:
-    """ return the row number at which to insert a disk"""
+    """ return the row number at which to insert the new disk"""
     i = column.count(None)
     return 6 - i
 
+#working with a board where None value represents an empty space
 board = [[None, None, None, None, None, None],[None, None, None, None, None, None],\
          [None, None, None, None, None, None],[None, None, None, None, None, None],\
          [None, None, None, None, None, None],[None, None, None, None, None, None],\
          [None, None, None, None, None, None]]
 
+
+#Note no changes in the GUI code has been made from 
 if __name__ == '__main__':
     win = pygame.display.set_mode((700, 800))
     #the board has 7 columns and 6 rows
@@ -177,10 +186,9 @@ if __name__ == '__main__':
                 if row < 6:
                     curr_disk = Disk(win, disk_pos_x, row, col, colour)
                     board[col][row] = curr_disk
-                    curr_disk.setup(board)
+                    curr_disk.set_up_disk(board)
                     if (curr_disk.check_win()):
                         print("Win!!!")
-                        break
 
         #background is a light blue
         win.fill((0,255,255))
@@ -202,7 +210,6 @@ if __name__ == '__main__':
             for disk in col:
                 if disk != None:
                     disk.draw()
-
         
         if(curr_disk != None and curr_disk.get_set()):
             if(colour == red):
