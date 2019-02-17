@@ -1,5 +1,4 @@
 import pygame
-pygame.init()
 
 class Disk:
     
@@ -127,7 +126,7 @@ class Disk:
     def set_up_disk(self, board: list) -> None:
         """
         Get the disk to point to the disks surrounding it on the board.
-        Also gets the surrounding disks to point to the current/new disk.
+        Also gets the surrounding disks to point to the eee/new disk.
         """
         self.bottom = self.attach_disk(self.col, self.row - 1, board) #Disk points to whatever is below
         
@@ -154,82 +153,5 @@ class Disk:
         self.bottomright = self.attach_disk(self.col + 1, self.row - 1, board) #Disk points to whatever is to the bottomright
         if self.bottomright != None:
             board[self.col + 1][self.row - 1].topleft = self #Disk at bottomright points at current Disk
-
-    
-def find_row(column: list) -> int:
-    """ return the row number at which to insert the new disk"""
-    i = column.count(None)
-    return 6 - i
-
-#working with a board where None value represents an empty space
-board = [[None, None, None, None, None, None],[None, None, None, None, None, None],\
-         [None, None, None, None, None, None],[None, None, None, None, None, None],\
-         [None, None, None, None, None, None],[None, None, None, None, None, None],\
-         [None, None, None, None, None, None]]
-
-
-#Note no changes in the GUI code has been made from 
-if __name__ == '__main__':
-    win = pygame.display.set_mode((700, 800))
-    #the board has 7 columns and 6 rows
-    #the current disk refers to the disk that has been dropped but is still falling in the animation
-    curr_disk = None
-    colour = (255,0,0)
-    red = (255,0,0)
-    blue = (0,0,255)
-
-    run = True
-    while run:
-        pygame.time.delay(50)
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-        if(curr_disk == None): #checks to see if a disk has dropped but hasn't finished falling
-            mouse_button_1 = pygame.mouse.get_pressed()[0] #checks if the player has clicked the left mouse button
-            if mouse_button_1:
-                mouse_pos_x = pygame.mouse.get_pos()[0]
-                disk_pos_x = mouse_pos_x - (mouse_pos_x % 100) + 50 # rounds the position of the disk to match the board GUI
-                col = (disk_pos_x//100) # the colomn index on the board list
-                #print(col)
-                #make Disk and add it to board
-                
-                row = find_row(board[col])
-                if row < 6:
-                    curr_disk = Disk(win, disk_pos_x, row, col, colour)
-                    board[col][row] = curr_disk
-                    curr_disk.set_up_disk(board)
-                    if (curr_disk.check_win()):
-                        print("Win!!!")
-
-        #background is a light blue
-        win.fill((0,255,255))
-        #vertical lines
-        pygame.draw.line(win,(255,255,255), (100,100),(100,700))
-        pygame.draw.line(win,(255,255,255), (200,100),(200,700))
-        pygame.draw.line(win,(255,255,255), (300,100),(300,700))
-        pygame.draw.line(win,(255,255,255), (400,100),(400,700))
-        pygame.draw.line(win,(255,255,255), (500,100),(500,700))
-        pygame.draw.line(win,(255,255,255), (600,100),(600,700))
-        #horizontal lines
-        pygame.draw.line(win,(255,255,255), (0,175), (700,175))
-        pygame.draw.line(win,(255,255,255), (0,275), (700,275))
-        pygame.draw.line(win,(255,255,255), (0,375), (700,375))
-        pygame.draw.line(win,(255,255,255), (0,475), (700,475))
-        pygame.draw.line(win,(255,255,255), (0,575), (700,575))
-
-        for col in board:
-            for disk in col:
-                if disk != None:
-                    disk.draw()
-        
-        if(curr_disk != None and curr_disk.get_set()):
-            if(colour == red):
-                colour = blue
-            else:
-                colour = red
-            curr_disk = None
-        pygame.display.update()
-pygame.quit()
 
 
