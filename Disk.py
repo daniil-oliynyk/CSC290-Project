@@ -111,6 +111,18 @@ class Disk:
         else:
             return board[col][row]
 
+    def find_best_move(board: list):
+        a == 1
+        curr_disk = None
+        for a in range(6):
+            if curr_dsik.check_win():
+                return this.x, this.y
+            elif board[this.row][this.col] == None:
+                this.col = this.col + 1
+            else:
+                a = a + 1
+            
+    
     def set_up_disk(self, board: list) -> None:
         """
         Get the disk to point to the disks surrounding it on the board.

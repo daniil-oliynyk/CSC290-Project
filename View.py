@@ -15,7 +15,6 @@ class View:
         """
         Display all the game board data on the pygame view.
         """
-       
 
         if(game_over is True): #displays an end game screen when one of the playes has won 
             if (colour == (255,0,0)): #if red disk wins
@@ -39,30 +38,75 @@ class View:
                 self.win.blit(p2,(335/2, 600/2))
                 font2 = pygame.font.SysFont("Comic Sans",50)
                 replay2 = font2.render("Press 'R' to Replay",1,(255,255,255))
-                self.win.blit(replay2,(200/2,700/2))  
+                self.win.blit(replay2,(400/2,700/2))  
                 
         
         elif(game_over is False):
+            yellow = (255, 255, 0)
             #background is a light blue
             self.win.fill((0,255,255))
-            #vertical lines
-            self.pygame.draw.line(self.win,(255,255,255), (100,100),(100,700))
-            self.pygame.draw.line(self.win,(255,255,255), (200,100),(200,700))
-            self.pygame.draw.line(self.win,(255,255,255), (300,100),(300,700))
-            self.pygame.draw.line(self.win,(255,255,255), (400,100),(400,700))
-            self.pygame.draw.line(self.win,(255,255,255), (500,100),(500,700))
-            self.pygame.draw.line(self.win,(255,255,255), (600,100),(600,700))
-            #horizontal lines
-            self.pygame.draw.line(self.win,(255,255,255), (0,175), (700,175))
-            self.pygame.draw.line(self.win,(255,255,255), (0,275), (700,275))
-            self.pygame.draw.line(self.win,(255,255,255), (0,375), (700,375))
-            self.pygame.draw.line(self.win,(255,255,255), (0,475), (700,475))
-            self.pygame.draw.line(self.win,(255,255,255), (0,575), (700,575))
 
             #Draw all the disks from the board on the pygame view
             for col in game_board:
                 for disk in col:
                     if disk != None:
                         disk.draw()
+
+
+            #graphics for the connect four gameboard            
+            #vertical lines
+            self.pygame.draw.rect(self.win, yellow , pygame.Rect(0,80, 20, 600), 0)
+            self.pygame.draw.rect(self.win, yellow , pygame.Rect(80,80, 40, 600), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (100,100),(100,700))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(180,80, 40, 600), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (200,100),(200,700))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(280,80, 40, 600), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (300,100),(300,700))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(380,80, 40, 600), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (400,100),(400,700))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(480,80, 40, 600), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (500,100),(500,700))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(580,80, 40, 600), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (600,100),(600,700))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(680,80, 40, 600), 0)
+
+            #horizontal lines
+
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,70, 700, 30), 0)
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,160, 700, 40), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (0,170), (700,175))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,260, 700, 40), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (0,270), (700,275))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,360, 700, 40), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (0,370), (700,375))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,460, 700, 40), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (0,475), (700,475))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,560, 700, 40), 0)
+            #self.pygame.draw.line(self.win,(255,255,255), (0,575), (700,575))
+            self.pygame.draw.rect(self.win, yellow, pygame.Rect(0,660, 700, 30), 0)
+
+            #circles
+            for i in range(6):
+                for j in range(7):
+                    pygame.draw.circle(self.win, yellow, (100* j + 50, 100*i + 130), 30, 5)
+            #pygame.draw.circle(self.win, yellow, (450, 530), 30, 5)
+            #Triangles to fill in the gaps between the circls and rectangles
+            for i in range(6):
+                for j in range(7):
+                    pygame.draw.polygon(self.win, yellow, [(100*j + 20, 100*i + 100),\
+                                                            (100*j + 45, 100*i + 100), (100*j + 20, 100*i + 124)])
+            for i in range(6):
+                for j in range(7):
+                    pygame.draw.polygon(self.win, yellow, [(100*j + 54, 100*i + 100),\
+                                                            (100*j + 80, 100*i + 100), (100*j + 80, 100*i + 124)])
+            for i in range(6):
+                for j in range(7):
+                    pygame.draw.polygon(self.win, yellow, [(100*j + 20, 100*i + 135),\
+                                                            (100*j + 45, 100*i + 160), (100*j + 20, 100*i + 160)])
+            for i in range(6):
+                for j in range(7):
+                    pygame.draw.polygon(self.win, yellow, [(100*j + 80, 100*i + 135),\
+                                                            (100*j + 55, 100*i + 160), (100*j + 80, 100*i + 160)])
+
 
         self.pygame.display.update()
