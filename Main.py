@@ -10,10 +10,11 @@ view = View(win, pygame)
 model = Model(win, view, controller)
 pygame.display.set_caption('Line Up 4!')
 
+view.start_screen()
+
 game_loop = True
 game_over = False
 #show_go_screen = False
-
 
 while game_loop: #loop iterates as long as user has not quit
     pygame.time.delay(50)

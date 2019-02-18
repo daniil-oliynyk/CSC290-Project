@@ -1,4 +1,5 @@
 import pygame
+import time
 
 class View:
     
@@ -15,7 +16,7 @@ class View:
         """
         Display all the game board data on the pygame view.
         """
-
+        
         if(game_over is True): #displays an end game screen when one of the playes has won 
             if (colour == (255,0,0)): #if red disk wins
                 self.win.fill((255,0,0))
@@ -43,8 +44,8 @@ class View:
         
         elif(game_over is False):
             yellow = (255, 255, 0)
-            #background is a light blue
-            self.win.fill((0,255,255))
+            #background color is white
+            self.win.fill((255,255,255))
 
             #Draw all the disks from the board on the pygame view
             for col in game_board:
@@ -110,3 +111,40 @@ class View:
 
 
         self.pygame.display.update()
+
+    def start_screen(self) -> None:
+
+        start = True
+
+        while start:
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    # start_screen gets removed if Spacebar is pressed
+                    if event.key == pygame.K_SPACE: 
+                        start = False
+                    # quit game if esc button is pressed
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        quit()
+
+            self.win.fill((255,255,255))
+            # font sizes
+            big_font = pygame.font.SysFont("Comic Sans", 120)
+            sm_font = pygame.font.SysFont("Comic Sans", 50)
+            
+            # messages printed on start screen
+            welcome = sm_font.render("Welcome to", True, (0,0,0))
+            self.win.blit(welcome, (500/2,520/2))
+            
+            title = big_font.render("Line Up 4!", True, (0,0,0))
+            self.win.blit(title, (300/2,650/2))
+
+            to_start = sm_font.render("Press Spacebar to Start Game", True, (0,255,0))
+            self.win.blit(to_start, (220/2,900/2))
+
+            to_end = sm_font.render("or ESC to Quit", True, (255,0,0))
+            self.win.blit(to_end, (450/2,970/2))
+
+            self.pygame.display.update()
+
