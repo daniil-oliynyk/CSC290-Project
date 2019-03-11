@@ -1,5 +1,6 @@
 import pygame
 import time
+from Button import Button
 
 class View:
     
@@ -9,7 +10,8 @@ class View:
     def __init__(self, win, pygame) -> None:
         self.pygame = pygame
         self.win = win
-        
+        #make the buttons for start, game & end
+        self.start_buttons = [Button((255,0,0), 250, 450, 200, 70, 50, "start game"), Button((255,0,0), 250, 550, 200, 70, 50, "quit game")]
 
     
     def display(self, game_board,game_over, colour) -> None:
@@ -118,16 +120,15 @@ class View:
 
         while start:
 
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    # start_screen gets removed if Spacebar is pressed
-                    if event.key == pygame.K_SPACE: 
-                        start = False
-                    # quit game if esc button is pressed
-                    if event.key == pygame.K_ESCAPE:
-                        pygame.quit()
-                        quit()
-
+            if self.pygame.mouse.get_pressed()[0]: #checks if mouse was pressed
+                clicked = self.pygame.mouse.get_pos()
+                if self.start_buttons[0].is_over(clicked):
+                    start = False
+                    pygame.time.delay(50)
+                if self.start_buttons[1].is_over(clicked):
+                    pygame.quit()
+                    quit()
+            
             self.win.fill((255,255,255))
             # font sizes
             big_font = pygame.font.SysFont("Comic Sans", 120)
@@ -140,11 +141,8 @@ class View:
             title = big_font.render("Line Up 4!", True, (0,0,0))
             self.win.blit(title, (300/2,650/2))
 
-            to_start = sm_font.render("Press Spacebar to Start Game", True, (0,255,0))
-            self.win.blit(to_start, (220/2,900/2))
-
-            to_end = sm_font.render("or ESC to Quit", True, (255,0,0))
-            self.win.blit(to_end, (450/2,970/2))
+            for button in self.start_buttons:
+                button.draw_button(self.win)
 
             self.pygame.display.update()
 
