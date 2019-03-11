@@ -14,7 +14,7 @@ class Button():
         
 
 
-    def draw_button(self, win, textsize=0, outline=None):
+    def draw_button(self, win, outline=None):
 
         if outline: #if you want an outline on the button (outline = True)
             pygame.draw.rect(win, outline, (self.x - 2, self.y - 2, self.width + 4, self.height + 4), 0)
@@ -27,8 +27,10 @@ class Button():
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
     def is_over(self, pos):
-        #Pos is the mouse position / tuple of (x, y) coordinates
-
+        """
+        pos is the mouse position / tuple of (x, y) coordinates.
+        Returns true iff pos is within the range of the button.
+        """
         if pos[0] > self.x and pos[0] < (self.x + self.width):
             if pos[1] > self.y and pos[1] < (self.y + self.height):
                 return True
