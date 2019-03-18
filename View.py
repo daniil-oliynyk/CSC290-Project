@@ -1,9 +1,8 @@
 import pygame
-import time
 
 class View:
     
-
+   # background_start = pygame.image.load("disco.jpg").convert()
     
    
     def __init__(self, win, pygame) -> None:
@@ -111,7 +110,12 @@ class View:
 
 
         self.pygame.display.update()
-
+        
+    def set_background(self, image):
+        background = pygame.image.load(image).convert()
+        self.win.blit(background, [0,0])
+        pygame.display.update()
+        
     def start_screen(self) -> None:
 
         start = True
@@ -132,7 +136,10 @@ class View:
             # font sizes
             big_font = pygame.font.SysFont("Comic Sans", 120)
             sm_font = pygame.font.SysFont("Comic Sans", 50)
+
             
+            #pygame.display.flip()
+            self.set_background("clouds.jpg")
             # messages printed on start screen
             welcome = sm_font.render("Welcome to", True, (0,0,0))
             self.win.blit(welcome, (500/2,520/2))
@@ -144,7 +151,8 @@ class View:
             self.win.blit(to_start, (220/2,900/2))
 
             to_end = sm_font.render("or ESC to Quit", True, (255,0,0))
-            self.win.blit(to_end, (450/2,970/2))
+            self.win.blit(to_end, (450/2,990/2))
 
             self.pygame.display.update()
+
 
