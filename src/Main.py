@@ -10,10 +10,6 @@ view = View(win, pygame)
 model = Model(win, view, controller)
 pygame.display.set_caption('Line Up 4!')
 
-##background_start = pygame.image.load("disco.jpg").convert()
-##win.blit(background_start, [0,0])
-##pygame.display.flip()
-##view.set_background("disco.jpg")
 view.start_screen()
 
 game_loop = True
