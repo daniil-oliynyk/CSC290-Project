@@ -87,7 +87,6 @@ class View:
     def set_background(self, image):
         background = pygame.image.load(image).convert()
         self.win.blit(background, [0,0])
-        pygame.display.update()
         
     def start_screen(self) -> None:
 
@@ -123,7 +122,7 @@ class View:
                     else:
                         self.start_buttons[2].color = (0,0,255)
                 
-            self.win.fill((255,255,255))
+            #self.win.fill((255,255,255))
             # font sizes
             big_font = pygame.font.Font("Consequences.ttf", 100)
             sm_font = pygame.font.Font("Consequences.ttf", 50)
