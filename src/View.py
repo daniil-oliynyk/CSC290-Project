@@ -9,7 +9,9 @@ class View:
         self.win = win
         
         #make the buttons for start
-        self.start_buttons = [Button((255,0,0), 250, 350, 200, 70, 50, "start game"), Button((255,0,0), 250, 450, 200, 70, 50, "quit game")]
+        self.start_buttons = [Button((0,255,0), 250, 500, 200, 70, 50, "START"),
+                              Button((255,0,0), 250, 600, 200, 70, 50, "QUIT"),
+                              Button((0,0,255), 50, 50, 100, 60, 40, "HELP")]
 
     
     def display(self, game_board,game_over, colour) -> None:
@@ -97,38 +99,44 @@ class View:
                 if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
                     clicked = self.pygame.mouse.get_pos()
                     if self.start_buttons[0].is_over(clicked): #check the start game button
-                        self.start_buttons[0].color = (0,0,255)
+                        self.start_buttons[0].color = (25,171,14)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
                             start = False
                             pygame.time.delay(100)
                     else:
-                        self.start_buttons[0].color = (255,0,0)
+                        self.start_buttons[0].color = (0,255,0)
 
                     if self.start_buttons[1].is_over(clicked): #check the quit game button
-                        self.start_buttons[1].color = (0,0,255)
+                        self.start_buttons[1].color = (162,20,20)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
                             pygame.quit()
                             quit()
                     else:
                         self.start_buttons[1].color = (255,0,0)
+
+                    if self.start_buttons[2].is_over(clicked): #check the help button
+                        self.start_buttons[2].color = (13,25,82)
+                        if self.pygame.mouse.get_pressed()[0]: #check for click
+                            # help descriptions pop up
+                            pygame.quit()
+                            quit()
+                    else:
+                        self.start_buttons[2].color = (0,0,255)
                 
             self.win.fill((255,255,255))
             # font sizes
-            big_font = pygame.font.SysFont("Comic Sans", 120)
-            sm_font = pygame.font.SysFont("Comic Sans", 50)
-
+            big_font = pygame.font.Font("Consequences.ttf", 100)
+            sm_font = pygame.font.Font("Consequences.ttf", 50)
             
             #pygame.display.flip()
             self.set_background("clouds.jpg")
+            
             # messages printed on start screen
             welcome = sm_font.render("Welcome to", True, (0,0,0))
-            self.win.blit(welcome, (250,160))
+            self.win.blit(welcome, (150,230))
             
             title = big_font.render("Line Up 4!", True, (0,0,0))
-            self.win.blit(title, (150,225))
-
-            to_end = sm_font.render("or ESC to Quit", True, (255,0,0))
-            self.win.blit(to_end, (450/2,990/2))
+            self.win.blit(title, (60,310))
 
             for button in self.start_buttons:
                 button.draw_button(self.win, True)
