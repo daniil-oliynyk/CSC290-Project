@@ -20,7 +20,9 @@ class View:
         #create return to main button for help screen
         self.back_button = Button((255,0,0), 30, 30, 200, 60, 30, "RETURN TO MAIN")
 
- 
+    def time_delay(self):
+        self.pygame.time.delay(50)
+
     def display(self, game_board,game_over, colour, game_controller) -> None:
         """
         Display all the game board data on the pygame view.

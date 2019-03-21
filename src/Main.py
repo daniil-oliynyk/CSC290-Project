@@ -32,8 +32,8 @@ while game_loop: #loop iterates as long as user has not quit
         disk_pos_x = controller.check_click() #receive position of mouse click
         if (disk_pos_x != None):
             game_over = model.add_disk(disk_pos_x) #add the new disk
-    
-    model.change_colour() #changes the colour for the next disk
+    if game_over != True:
+        model.change_colour() #changes the colour for the next disk
     
     model.update_view(game_over) #model sends new data to the view    
        

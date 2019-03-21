@@ -76,6 +76,9 @@ class Model:
             self.curr_disk = Disk(self.win, disk_pos_x, row, col, self.curr_colour) #create disk object
             self.game_board[col][row] = self.curr_disk #insert disk in the proper location on the board
             self.curr_disk.set_up_disk(self.game_board) #connect the disk to all surrounding disks on the board
+            while(self.curr_disk.get_set() != True):
+                self.game_view.time_delay()
+                self.update_view(False)
             if (self.curr_disk.check_win()): #check if the disk has won the game
                 return True
             return False
