@@ -27,7 +27,7 @@ class View:
         
         if(game_over is True): #displays an end game screen when one of the playes has won 
             
-            self.set_background("backgrounds/end_background.jpg")
+            self.set_background("images/end_background.jpg")
 
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
@@ -156,12 +156,12 @@ class View:
             sm_font = pygame.font.Font("Consequences.ttf", 50)
             
             #pygame.display.flip()
-            self.set_background("backgrounds/clouds.jpg")
+            self.set_background("images/clouds.jpg")
             
             # if help button is pressed, print the instructions screen and return to main button
             if help_button == True:
                 # instruction screen
-                self.set_background("help.jpg")
+                self.set_background("images/help.jpg")
 
                 # creating and accessing data of button in help screen
                 self.back_button.draw_button(self.win, True)
@@ -182,7 +182,7 @@ class View:
                 big_font = pygame.font.Font("Consequences.ttf", 100)
                 sm_font = pygame.font.Font("Consequences.ttf", 50)
                 
-                self.set_background("backgrounds/clouds.jpg")
+                self.set_background("images/clouds.jpg")
                 
                 # messages printed on start screen
                 welcome = sm_font.render("Welcome to", True, (0,0,0))

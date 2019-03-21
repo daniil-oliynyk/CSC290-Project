@@ -4,6 +4,9 @@ from View import View
 import pygame
 
 pygame.init()
+pygame.mixer.music.load("background_music.mp3")
+pygame.mixer.music.play(-1)
+
 win = pygame.display.set_mode((700, 800))
 controller = Controller(pygame)
 view = View(win, pygame)
