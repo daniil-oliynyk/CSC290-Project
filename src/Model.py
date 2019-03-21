@@ -64,8 +64,10 @@ class Model:
             
     def add_disk(self, disk_pos_x) -> bool:
         """
-        Add new disk to the game board using the position of the mouse click.
-        Then check if that new disk has won the game.
+        Add new disk to the game board using the horizontal position
+        of the mouse click. Then check if that new disk has won the game.
+
+        returns True if the new disk has won the game.
         """
         col = (disk_pos_x//100) # the colomn index on the board list
         row = find_row(self.game_board[col]) #find the first non empty row in the given column

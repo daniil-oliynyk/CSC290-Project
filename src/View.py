@@ -1,4 +1,5 @@
 import pygame
+import time
 from Button import Button
 import sys
 
@@ -18,8 +19,11 @@ class View:
 
         #create return to main button for help screen
         self.back_button = Button((255,0,0), 30, 30, 200, 60, 30, "RETURN TO MAIN")
-
+    
     def time_delay(self):
+        """
+        Method used to delay time by 50 milliseconds
+        """
         self.pygame.time.delay(50)
 
     def display(self, game_board,game_over, colour, game_controller) -> None:
@@ -107,14 +111,21 @@ class View:
                                                             (100*j + 45, 100*i + 160), (100*j + 20, 100*i + 160)])
                     pygame.draw.polygon(self.win, yellow, [(100*j + 80, 100*i + 135),\
                                                             (100*j + 55, 100*i + 160), (100*j + 80, 100*i + 160)])
+
+
         self.pygame.display.update()
         
     def set_background(self, image):
+        """
+        sets the background to the image provided as an argument
+        """
         background = pygame.image.load(image).convert()
         self.win.blit(background, [0,0])
         
     def start_screen(self) -> None:
-
+        """
+        Display the start screen on the pygame view
+        """
         start = True
         help_button = False
 
