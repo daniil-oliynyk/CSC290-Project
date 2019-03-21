@@ -15,7 +15,7 @@ class View:
                               Button((0,0,255), 50, 50, 100, 60, 40, "HELP")]
 
 
-        self.end_buttons = [Button((0,255,0),  250, 500, 200, 70, 50, "REPLAY")]
+        self.end_button = Button((0,255,0),  250, 500, 200, 60, 30, "RETURN TO MAIN")
 
         #create return to main button for help screen
         self.back_button = Button((255,0,0), 30, 30, 200, 60, 30, "RETURN TO MAIN")
@@ -25,53 +25,50 @@ class View:
         """
         Display all the game board data on the pygame view.
         """
+        if game_over is True:
+            while game_over is True: #displays an end game screen when one of the playes has won 
+                
+                self.set_background("images/end_background.jpg")
+                self.end_button.draw_button(self.win, True) 
+                
+                for event in pygame.event.get():            
+                    if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
+                        clicked = self.pygame.mouse.get_pos()
+                        if self.end_button.is_over(clicked): #check the start game button
+                            self.end_button.color = (25,171,14)
+                            if self.pygame.mouse.get_pressed()[0]: #check for click
+                                game_over = False
+                                print("RETURN button pressed")
+                                self.start_screen()
+                        else:
+                            self.end_button.color = (0,255,0)                     
+                
+    
+                if (colour == (255,0,0) and game_over is True): #if red disk wins
+                    
+                    font = pygame.font.Font("Consequences.ttf",60) #font used for Game Over and Red Disk Wins
+                    
+                    game_over_text = font.render("Game Over!",1,(255,255,255))
+                    self.win.blit(game_over_text, (150,190))
+                    p1 = font.render("Red", 1, (255,0,0))
+                    self.win.blit(p1,(80,260))
+                    p2 = font.render("Disk Wins!",1,(255,255,255))
+                    self.win.blit(p2,(235, 260)) #displays the text after rendering
+                     
+                elif (colour == (0,0,255) and game_over is True): #if blue disk wins
+                    
+                    font = pygame.font.Font("Consequences.ttf",60)
+                    
+                    text = font.render("Game Over!",1,(255,255,255))
+                    self.win.blit(text, (150,190))
+                    p1 = font.render("Blue",1,(0,0,255))
+                    self.win.blit(p1,(80,260))
+                    p2 = font.render("Disk Wins!",1,(255,255,255))
+                    self.win.blit(p2,(280, 260))
+                    
+                self.pygame.display.update()
         
-        if(game_over is True): #displays an end game screen when one of the playes has won 
-            
-            self.set_background("images/end_background.jpg")
-
-            for event in pygame.event.get():
-                if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
-                    clicked = self.pygame.mouse.get_pos()
-                    if self.end_buttons[0].is_over(clicked): #check the start game button
-                        self.start_buttons[0].color = (25,171,14)
-                        if self.pygame.mouse.get_pressed()[0]: #check for click
-                            game_controller.set_restart_flag()
-                    else:
-                        self.start_buttons[0].color = (0,255,0) 
-                        
-            for button in self.end_buttons:
-                button.draw_button(self.win, True)    
-            
-
-            if (colour == (255,0,0)): #if red disk wins
-                
-                font = pygame.font.Font("Consequences.ttf",60) #font used for Game Over and Red Disk Wins
-                
-                game_over_text = font.render("Game Over!",1,(255,255,255))
-                self.win.blit(game_over_text, (150,190))
-                p1 = font.render("Red", 1, (255,0,0))
-                self.win.blit(p1,(80,260))
-                p2 = font.render("Disk Wins!",1,(255,255,255))
-                self.win.blit(p2,(235, 260)) #displays the text after rendering
-                 
-            elif (colour == (0,0,255)): #if blue disk wins
-                
-                font = pygame.font.Font("Consequences.ttf",60)
-                
-                text = font.render("Game Over!",1,(255,255,255))
-                self.win.blit(text, (150,190))
-                p1 = font.render("Blue",1,(0,0,255))
-                self.win.blit(p1,(80,260))
-                p2 = font.render("Disk Wins!",1,(255,255,255))
-                self.win.blit(p2,(280, 260))
-                
-                
-
-                
-        
-        
-        elif(game_over is False):
+        else: #display the game_board
             yellow = (255, 255, 0)
             #background color is white
             self.win.fill((255,255,255))
