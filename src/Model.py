@@ -33,7 +33,6 @@ class Model:
         """
         Restarts the model to the default
         """
-        print("restarting model")
         self.curr_disk = None
         self.curr_colour = red
         self.game_board = [[None, None, None, None, None, None],[None, None, None, None, None, None],\

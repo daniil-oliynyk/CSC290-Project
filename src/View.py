@@ -40,7 +40,6 @@ class View:
                             self.end_button.color = (25,171,14)
                             if self.pygame.mouse.get_pressed()[0]: #check for click
                                 game_over = False
-                                print("RETURN button pressed")
                                 self.start_screen()
                         else:
                             self.end_button.color = (0,255,0)                     
@@ -134,7 +133,6 @@ class View:
                         self.start_buttons[0].color = (25,171,14)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
                             start = False
-                            print("START button pressed")
                             pygame.time.delay(100)
                     else:
                         self.start_buttons[0].color = (0,255,0)
@@ -142,7 +140,6 @@ class View:
                     if self.start_buttons[1].is_over(clicked): #check the quit game button
                         self.start_buttons[1].color = (162,20,20)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
-                            print("QUIT button pressed")
                             self.pygame.quit()
                             quit()
                     else:
@@ -151,7 +148,6 @@ class View:
                     if self.start_buttons[2].is_over(clicked): #check the help button
                         self.start_buttons[2].color = (13,25,82)
                         if self.pygame.mouse.get_pressed()[0]:
-                            print("HELP button pressed")
                             help_button = True
                     else:
                         self.start_buttons[2].color = (0,0,255)
@@ -178,7 +174,6 @@ class View:
                             self.back_button.color = (162,20,20)
                             if self.pygame.mouse.get_pressed()[0]:
                                 help_button = False
-                                print("Return to Main button pressed")
                         else:
                             self.back_button.color = (255,0,0)
                             
