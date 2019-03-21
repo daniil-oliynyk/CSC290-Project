@@ -71,6 +71,7 @@ class View:
                 self.pygame.display.update()
         
         else: #display the game_board
+            
             yellow = (255, 255, 0)
             #background color is white
             self.win.fill((255,255,255))
@@ -80,7 +81,9 @@ class View:
                 for disk in col:
                     if disk != None:
                         disk.draw()
-
+                        
+            x_coordinate = self.pygame.mouse.get_pos()[0]
+            self.pygame.draw.circle(self.win, colour, (x_coordinate, 30), 30)            
 
             #graphics for the connect four gameboard            
             #vertical lines
