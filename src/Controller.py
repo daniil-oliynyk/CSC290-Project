@@ -2,30 +2,26 @@ import pygame
 
 class Controller:
     
+   
+
     def __init__(self, pygame) -> None:
         self.pygame = pygame
-        
+        self.res_flag = None
     
 
-    def go_replay_handler(self):
+    def set_restart_flag(self):
+        self.res_flag = True
+
+    def return_restart_flag(self):
         """
         return true iff the user has pressed the R key
         """
-        for event in self.pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_r:
-                    return True
-        return False
+        if(self.res_flag):
+            self.res_flag = False
+            return True
+        else:
+            return False
 
-    def go_quit_handler(self):
-        """
-        return true iff the user has pressed the Q key
-        """
-        for event in self.pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    return True
-        return False
             
     def check_quit(self):
         """

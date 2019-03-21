@@ -46,7 +46,7 @@ class Model:
         """
         Send the game view the game board to display.
         """
-        self.game_view.display(self.game_board,game_over,self.curr_colour)
+        self.game_view.display(self.game_board,game_over,self.curr_colour,self.game_controller)
         
     def get_colour(self):
         return self.curr_colour

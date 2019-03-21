@@ -34,14 +34,12 @@ while game_loop: #loop iterates as long as user has not quit
     model.update_view(game_over) #model sends new data to the view    
        
     if(game_over is True):
-        if(controller.go_replay_handler() is True): #checking if R key is pressed to restart game
+        if(controller.return_restart_flag() is True): #checking if R key is pressed to restart game
             model.restart_model() 
             game_over = False
             model.update_view(game_over)
             #resets model and updates the view
-        if(controller.go_quit_handler() is True): #checking if Q key is pressed to quit 
-            pygame.quit()
-
+        
 #while show_go_screen:
  #   model.set_game_over()
   #  if(controller.check_quit() is False):

@@ -13,36 +13,57 @@ class View:
                               Button((255,0,0), 250, 600, 200, 70, 50, "QUIT"),
                               Button((0,0,255), 50, 50, 100, 60, 40, "HELP")]
 
+        self.end_buttons = [Button((0,255,0),  250, 500, 200, 70, 50, "REPLAY")]
     
-    def display(self, game_board,game_over, colour) -> None:
+    def display(self, game_board,game_over, colour, game_controller) -> None:
         """
         Display all the game board data on the pygame view.
         """
         
         if(game_over is True): #displays an end game screen when one of the playes has won 
+            
+            self.set_background("backgrounds/end_background.jpg")
+
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
+                    clicked = self.pygame.mouse.get_pos()
+                    if self.end_buttons[0].is_over(clicked): #check the start game button
+                        self.start_buttons[0].color = (25,171,14)
+                        if self.pygame.mouse.get_pressed()[0]: #check for click
+                            game_controller.set_restart_flag()
+                    else:
+                        self.start_buttons[0].color = (0,255,0) 
+                        
+            for button in self.end_buttons:
+                button.draw_button(self.win, True)    
+            
+
             if (colour == (255,0,0)): #if red disk wins
-                self.win.fill((255,0,0))
-                font = pygame.font.SysFont("Comic Sans",75) #font used for Game Over and Red Disk Wins
+                
+                font = pygame.font.Font("Consequences.ttf",60) #font used for Game Over and Red Disk Wins
+                
                 game_over_text = font.render("Game Over!",1,(255,255,255))
-                self.win.blit(game_over_text, (420/2,500/2))
-                p1 = font.render("Red Disk Wins!",1,(255,255,255))
-                self.win.blit(p1,(335/2, 600/2)) #displays the text after rendering
-                font2 = pygame.font.SysFont("Comic Sans",50) #different font needed because of smaller font size
-                replay1 = font2.render("Press 'R' to Replay",1,(255,255,255))
-                self.win.blit(replay1,(400/2,700/2))  
-                
+                self.win.blit(game_over_text, (150,190))
+                p1 = font.render("Red", 1, (255,0,0))
+                self.win.blit(p1,(80,260))
+                p2 = font.render("Disk Wins!",1,(255,255,255))
+                self.win.blit(p2,(235, 260)) #displays the text after rendering
+                 
             elif (colour == (0,0,255)): #if blue disk wins
-                #same as if red disk wins
-                self.win.fill((0,0,255))
-                font = pygame.font.SysFont("Comic Sans",75)
-                text = font.render("Game Over!",1,(255,255,255))
-                self.win.blit(text, (420/2,500/2))
-                p2 = font.render("Blue Disk Wins!",1,(255,255,255))
-                self.win.blit(p2,(335/2, 600/2))
-                font2 = pygame.font.SysFont("Comic Sans",50)
-                replay2 = font2.render("Press 'R' to Replay",1,(255,255,255))
-                self.win.blit(replay2,(400/2,700/2))  
                 
+                font = pygame.font.Font("Consequences.ttf",60)
+                
+                text = font.render("Game Over!",1,(255,255,255))
+                self.win.blit(text, (150,190))
+                p1 = font.render("Blue",1,(0,0,255))
+                self.win.blit(p1,(80,260))
+                p2 = font.render("Disk Wins!",1,(255,255,255))
+                self.win.blit(p2,(280, 260))
+                
+                
+
+                
+        
         
         elif(game_over is False):
             yellow = (255, 255, 0)
@@ -128,7 +149,7 @@ class View:
             sm_font = pygame.font.Font("Consequences.ttf", 50)
             
             #pygame.display.flip()
-            self.set_background("clouds.jpg")
+            self.set_background("backgrounds/clouds.jpg")
             
             # messages printed on start screen
             welcome = sm_font.render("Welcome to", True, (0,0,0))
