@@ -144,7 +144,7 @@ class Disk:
             
         self.topright = self.attach_disk(self.col + 1, self.row + 1, board) #Disk points to whatever is to the topright
         if self.topright != None:
-            board[self.col + 1][self.row].bottomleft = self #Disk at topright points at current Disk
+            board[self.col + 1][self.row + 1].bottomleft = self #Disk at topright points at current Disk
             
         self.bottomleft = self.attach_disk(self.col - 1, self.row - 1, board) #Disk points to whatever is to the bottomleft
         if self.bottomleft != None:
