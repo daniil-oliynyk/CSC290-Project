@@ -13,8 +13,13 @@ class View:
                               Button((255,0,0), 250, 600, 200, 70, 50, "QUIT"),
                               Button((0,0,255), 50, 50, 100, 60, 40, "HELP")]
 
+
         self.end_buttons = [Button((0,255,0),  250, 500, 200, 70, 50, "REPLAY")]
-    
+
+        #create return to main button for help screen
+        self.back_button = Button((255,0,0), 30, 30, 200, 60, 30, "RETURN TO MAIN")
+
+ 
     def display(self, game_board,game_over, colour, game_controller) -> None:
         """
         Display all the game board data on the pygame view.
@@ -112,6 +117,7 @@ class View:
     def start_screen(self) -> None:
 
         start = True
+        help_button = False
 
         while start:
             
@@ -122,6 +128,7 @@ class View:
                         self.start_buttons[0].color = (25,171,14)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
                             start = False
+                            print("START button pressed")
                             pygame.time.delay(100)
                     else:
                         self.start_buttons[0].color = (0,255,0)
@@ -129,17 +136,17 @@ class View:
                     if self.start_buttons[1].is_over(clicked): #check the quit game button
                         self.start_buttons[1].color = (162,20,20)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
-                            pygame.quit()
+                            print("QUIT button pressed")
+                            self.pygame.quit()
                             quit()
                     else:
                         self.start_buttons[1].color = (255,0,0)
 
                     if self.start_buttons[2].is_over(clicked): #check the help button
                         self.start_buttons[2].color = (13,25,82)
-                        if self.pygame.mouse.get_pressed()[0]: #check for click
-                            # help descriptions pop up
-                            pygame.quit()
-                            quit()
+                        if self.pygame.mouse.get_pressed()[0]:
+                            print("HELP button pressed")
+                            help_button = True
                     else:
                         self.start_buttons[2].color = (0,0,255)
                 
@@ -151,15 +158,41 @@ class View:
             #pygame.display.flip()
             self.set_background("backgrounds/clouds.jpg")
             
-            # messages printed on start screen
-            welcome = sm_font.render("Welcome to", True, (0,0,0))
-            self.win.blit(welcome, (150,230))
-            
-            title = big_font.render("Line Up 4!", True, (0,0,0))
-            self.win.blit(title, (60,310))
+            # if help button is pressed, print the instructions screen and return to main button
+            if help_button == True:
+                # instruction screen
+                self.set_background("help.jpg")
 
-            for button in self.start_buttons:
-                button.draw_button(self.win, True)
+                # creating and accessing data of button in help screen
+                self.back_button.draw_button(self.win, True)
+                for event in pygame.event.get():
+                    if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
+                        clicked = self.pygame.mouse.get_pos()
+                        if self.back_button.is_over(clicked):
+                            self.back_button.color = (162,20,20)
+                            if self.pygame.mouse.get_pressed()[0]:
+                                help_button = False
+                                print("Return to Main button pressed")
+                        else:
+                            self.back_button.color = (255,0,0)
+                            
+            # if help button is not pressed, print the regular start screen
+            else:  
+                # font sizes
+                big_font = pygame.font.Font("Consequences.ttf", 100)
+                sm_font = pygame.font.Font("Consequences.ttf", 50)
+                
+                self.set_background("backgrounds/clouds.jpg")
+                
+                # messages printed on start screen
+                welcome = sm_font.render("Welcome to", True, (0,0,0))
+                self.win.blit(welcome, (150,230))
+                
+                title = big_font.render("Line Up 4!", True, (0,0,0))
+                self.win.blit(title, (60,310))
+
+                for button in self.start_buttons:
+                    button.draw_button(self.win, True)
 
             self.pygame.display.update()
 
