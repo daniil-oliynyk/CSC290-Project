@@ -117,14 +117,14 @@ class View:
         
     def set_background(self, image):
         """
-        sets the background to the image provided as an argument
+        Sets the background to the image provided as an argument
         """
         background = pygame.image.load(image).convert()
         self.win.blit(background, [0,0])
         
     def start_screen(self) -> None:
         """
-        Display the start screen on the pygame view
+        Display the start screen on the pygame view. The start screen has options to Start Game, Quit or Help.
         """
         start = True
         help_button = False
@@ -159,18 +159,16 @@ class View:
                             help_button = True
                     else:
                         self.start_buttons[2].color = (0,0,255)
-                
-            #self.win.fill((255,255,255))
+            
             # font sizes
             big_font = pygame.font.Font("Consequences.ttf", 100)
             sm_font = pygame.font.Font("Consequences.ttf", 50)
-            
-            #pygame.display.flip()
+
             self.set_background("images/clouds.jpg")
             
-            # if help button is pressed, print the instructions screen and return to main button
+            # if help button is pressed, display the instructions screen and return to main button
             if help_button == True:
-                # instruction screen
+                # display instruction screen
                 self.set_background("images/help.jpg")
 
                 # creating and accessing data of button in help screen
@@ -190,7 +188,8 @@ class View:
                 # font sizes
                 big_font = pygame.font.Font("Consequences.ttf", 100)
                 sm_font = pygame.font.Font("Consequences.ttf", 50)
-                
+
+                # set background
                 self.set_background("images/clouds.jpg")
                 
                 # messages printed on start screen
@@ -200,6 +199,7 @@ class View:
                 title = big_font.render("Line Up 4!", True, (0,0,0))
                 self.win.blit(title, (60,310))
 
+                # display buttons
                 for button in self.start_buttons:
                     button.draw_button(self.win, True)
 
