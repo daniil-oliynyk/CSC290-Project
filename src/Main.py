@@ -3,6 +3,7 @@ from Controller import Controller
 from View import View
 import pygame
 
+
 pygame.init()
 pygame.mixer.music.load("background_music.mp3")
 pygame.mixer.music.play(-1)

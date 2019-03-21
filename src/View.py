@@ -1,6 +1,7 @@
 import pygame
 import time
 from Button import Button
+import sys
 
 class View:
    
@@ -122,6 +123,9 @@ class View:
         while start:
             
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.pygame.quit()
+                    sys.exit()
                 if event.type == pygame.MOUSEMOTION or event.type == pygame.MOUSEBUTTONDOWN:          
                     clicked = self.pygame.mouse.get_pos()
                     if self.start_buttons[0].is_over(clicked): #check the start game button
