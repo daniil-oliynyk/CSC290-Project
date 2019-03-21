@@ -1,5 +1,4 @@
 import pygame
-import time
 from Button import Button
 import sys
 
@@ -108,8 +107,6 @@ class View:
                                                             (100*j + 45, 100*i + 160), (100*j + 20, 100*i + 160)])
                     pygame.draw.polygon(self.win, yellow, [(100*j + 80, 100*i + 135),\
                                                             (100*j + 55, 100*i + 160), (100*j + 80, 100*i + 160)])
-
-
         self.pygame.display.update()
         
     def set_background(self, image):

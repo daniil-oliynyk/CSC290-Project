@@ -3,7 +3,6 @@ import pygame
 class Button():
 
     def __init__(self, color, x, y, width, height, textsize, text = ''):
-
         self.color = color
         self.x = x
         self.y = y
@@ -12,10 +11,10 @@ class Button():
         self.text = text
         self.textsize = textsize
         
-
-
     def draw_button(self, win, outline=None):
-
+        """
+        Draws a rectangular button onto the GUI. 
+        """
         if outline: #if you want an outline on the button (outline = True)
             pygame.draw.rect(win, outline, (self.x - 2, self.y - 2, self.width + 4, self.height + 4), 0)
 

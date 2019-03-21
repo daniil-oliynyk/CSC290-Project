@@ -1,8 +1,6 @@
 import pygame
 
-class Controller:
-    
-   
+class Controller:  
 
     def __init__(self, pygame) -> None:
         self.pygame = pygame
@@ -21,8 +19,7 @@ class Controller:
             return True
         else:
             return False
-
-            
+       
     def check_quit(self):
         """
         return true iff the user hasnt selected to quit the game page.

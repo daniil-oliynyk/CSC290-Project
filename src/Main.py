@@ -18,7 +18,6 @@ view.start_screen()
 
 game_loop = True
 game_over = False
-#show_go_screen = False
 
 while game_loop: #loop iterates as long as user has not quit
     pygame.time.delay(50)
@@ -26,7 +25,6 @@ while game_loop: #loop iterates as long as user has not quit
     if(controller.check_quit() is False):
         
         game_loop = False
-
 
     if(model.curr_disk == None ):
         disk_pos_x = controller.check_click() #receive position of mouse click
@@ -38,14 +36,7 @@ while game_loop: #loop iterates as long as user has not quit
     model.change_colour() #changes the colour for the next disk
     
     if(game_over is True):
-        model.restart_model()
+        model.restart_model() #clear the game board
         game_over = False
-
-        
-#while show_go_screen:
- #   model.set_game_over()
-  #  if(controller.check_quit() is False):
-   #     show_go_screen = False
-
 
 pygame.quit()
