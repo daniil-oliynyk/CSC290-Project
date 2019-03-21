@@ -51,7 +51,6 @@ class Model:
     def get_colour(self):
         return self.curr_colour
 
-
     def change_colour(self) -> None:
         """
         Changes the current colour between red and blue to alternate between players.

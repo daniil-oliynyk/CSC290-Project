@@ -32,17 +32,15 @@ while game_loop: #loop iterates as long as user has not quit
         disk_pos_x = controller.check_click() #receive position of mouse click
         if (disk_pos_x != None):
             game_over = model.add_disk(disk_pos_x) #add the new disk
-    if game_over != True:
-        model.change_colour() #changes the colour for the next disk
+            
+    model.update_view(game_over) #model sends new data to the view
     
-    model.update_view(game_over) #model sends new data to the view    
-       
+    model.change_colour() #changes the colour for the next disk
+    
     if(game_over is True):
-        if(controller.return_restart_flag() is True): #checking if R key is pressed to restart game
-            model.restart_model() 
-            game_over = False
-            model.update_view(game_over)
-            #resets model and updates the view
+        model.restart_model()
+        game_over = False
+
         
 #while show_go_screen:
  #   model.set_game_over()
