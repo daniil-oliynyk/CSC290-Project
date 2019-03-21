@@ -141,7 +141,7 @@ class View:
                         self.start_buttons[1].color = (162,20,20)
                         if self.pygame.mouse.get_pressed()[0]: #check for click
                             self.pygame.quit()
-                            quit()
+                            sys.exit()
                     else:
                         self.start_buttons[1].color = (255,0,0)
 
