@@ -1,4 +1,4 @@
-## Game Description
+## Game Description :video_game:
 Contributors:
 - Daniil Oliynyk
 - Arshia Gharai
@@ -14,7 +14,7 @@ Our game is a cloned version of the board game Connect 4 that we called Line Up 
 | ![Screen 1](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.41.44%20PM.png)| ![Screen 2](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.42.41%20PM.png)|
 | ![Screen 3](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.43.06%20PM.png)| ![Screen 4](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/NewEndScreen.png)|
 
-## How to play (Features)
+## How to play (Features) :star:
 [[Back to top]](https://github.com/daniil-oliynyk/csc290gadjj#csc290[gadjj])
 
 - The start screen contains Start, Quit and Help buttons.
@@ -31,7 +31,7 @@ Our game is a cloned version of the board game Connect 4 that we called Line Up 
 
 ## Installation Instructions :floppy_disk: 
 ### For `Windows` 
-- Download the executable file and run it (provide link later)
+- :arrow_down: [Download the installer](https://github.com/daniil-oliynyk/csc290gadjj/releases/tag/v1.0.0)
 ### For `Ubunt/Debian`
 - Have python3 and pygame installed
 ```bash
