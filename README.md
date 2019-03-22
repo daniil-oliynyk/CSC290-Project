@@ -12,7 +12,7 @@ Our game is a cloned version of the board game Connect 4 that we called Line Up 
 [[Back to top]](https://github.com/daniil-oliynyk/csc290gadjj#csc290[gadjj])
 
 | ![Screen 1](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.41.44%20PM.png)| ![Screen 2](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.42.41%20PM.png)|
-| ![Screen 3](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.43.06%20PM.png)| ![Screen 4](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.43.21%20PM.png)|
+| ![Screen 3](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/Screen%20Shot%202019-03-18%20at%203.43.06%20PM.png)| ![Screen 4](https://github.com/daniil-oliynyk/csc290gadjj/blob/master/screenshots/NewEndScreen.png)|
 
 ## How to play (Features)
 [[Back to top]](https://github.com/daniil-oliynyk/csc290gadjj#csc290[gadjj])
