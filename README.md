@@ -26,7 +26,7 @@ Our game is a cloned version of the board game Connect 4 that we called Line Up 
   - In order for a player to win, they have to line up 4 disks vertically, horizontally or diogonally
 - The last screen pops when either a player has won or the board is filled up
   - This screen conatins a message "Game Over!" followed by the player that won the game
-  - This also has an feature where if you press the 'R' key on your keyboard you will be able to replay the game without having to relaunch the whole game.
+  - Click on the RETURN TO MAIN to go back to the main menu
 
 
 ## Installation Instructions :floppy_disk: 
