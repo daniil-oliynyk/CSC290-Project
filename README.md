@@ -32,7 +32,7 @@ Our game is a cloned version of the board game Connect 4 that we called Line Up 
 ## Installation Instructions :floppy_disk: 
 ### For `Windows` 
 - :arrow_down: [Download the installer](https://github.com/daniil-oliynyk/csc290gadjj/releases/tag/v1.0.0)
-### For `Ubunt/Debian`
+### For `Ubuntu/Debian`
 - Have python3 and pygame installed
 ```bash
 $ sudo apt-get install python3 
