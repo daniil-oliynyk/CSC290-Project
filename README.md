@@ -49,6 +49,7 @@ $ python3 Main.py
 ```bash
 $ brew install python3
 $ sudo easy_install pip
+$ pip install pygame
 ```
 - Clone the repo and run python
 ```bash
