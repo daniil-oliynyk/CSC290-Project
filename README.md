@@ -44,7 +44,18 @@ $ git clone https://github.com/daniil-oliynyk/csc290gadjj.git
 $ cd csc290gadjj/src
 $ python3 Main.py
 ```
-
+### For `Mac OS`
+- Have python3 and pygame installed
+```bash
+$ brew install python3
+$ sudo easy_install pip
+```
+- Clone the repo and run python
+```bash
+$ git clone https://github.com/daniil-oliynyk/csc290gadjj.git
+$ cd csc290gadjj/src
+$ python3 Main.py
+```
 
 ## Project Directory and Code Structure :file_folder: 
 
