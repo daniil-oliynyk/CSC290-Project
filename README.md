@@ -44,7 +44,7 @@ $ git clone https://github.com/daniil-oliynyk/csc290gadjj.git
 $ cd csc290gadjj/src
 $ python3 Main.py
 ```
-### For `Mac OS`
+### For `MacOS`
 - Have python3 and pygame installed
 ```bash
 $ brew install python3
